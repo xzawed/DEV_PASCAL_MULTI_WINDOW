@@ -3,7 +3,7 @@ unit U_Class;
 interface
 
 uses Forms, Windows, Classes;
-
+  (*
   type Form_MDI = class
     constructor
     destructor
@@ -13,7 +13,7 @@ uses Forms, Windows, Classes;
     public
 
   end;
-
+  *)
 implementation
 
 end.
