@@ -12,6 +12,7 @@ uses
   function func_Sub_Lower_Bool( pStr : String ):Boolean;              // 소문자가 있는지 체크
   function func_Sub_Number_Bool( pStr : String ):Boolean;             // 숫자가 있는지 체크
   function func_Sub_Number_Consecutive_Bool( pStr : String ):Boolean; // 연속된 숫자가 있는지 체크
+  function func_Sub_Script_Lang_Bool( pStr : String ):Boolean;        // Script 내용이 있는지 체크
 
   // Password가 유효한지 확인
   function func_Valid_Password(pPassword : String; var vResultcd: Integer):Boolean; stdcall;
@@ -152,6 +153,13 @@ begin
   end;
 end;
 
+// Script 내용이 있는지 체크
+function func_Sub_Script_Lang_Bool( pStr : String ):Boolean;
+begin
+  // 현재까지 해당내용에 대한 구현 Guide가 없어 보임..
+  Result := False;
+end;
+
 function func_Valid_Password(pPassword : String; var vResultcd: Integer):Boolean;
 begin
   try
@@ -171,6 +179,7 @@ begin
       // 1. 문자, 숫자, 특수문자 조합 무조건 있어야함
       // 2. 연속된 숫자가 없어야함.
       // 3. 문자는 반드시 영문만 가능.
+      // 4. Script 문법에 해당되는 내용은 불가능.
       *)
       if func_Sub_Special_Bool(pPassword) = False then
       begin
@@ -207,6 +216,12 @@ begin
         Result    := False;
       end;
 
+      if func_Sub_Script_Lang_Bool(pPassword) then
+      begin
+        // Script 문법이 있음
+        vResultcd := 40;
+        Result    := False;
+      end;
     end;
 
   except on E:Exception do

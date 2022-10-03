@@ -2,8 +2,8 @@ object F_Main: TF_Main
   Left = 0
   Top = 0
   Caption = #47700#51064#54868#47732
-  ClientHeight = 487
-  ClientWidth = 607
+  ClientHeight = 558
+  ClientWidth = 778
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,4 +14,75 @@ object F_Main: TF_Main
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Pnl_TOP: TPanel
+    Left = 0
+    Top = 0
+    Width = 778
+    Height = 105
+    Align = alTop
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitLeft = 1
+    ExplicitTop = 2
+  end
+  object cxSplit_TOP: TcxSplitter
+    Left = 0
+    Top = 105
+    Width = 778
+    Height = 8
+    HotZoneClassName = 'TcxSimpleStyle'
+    AlignSplitter = salTop
+    ExplicitTop = 49
+    ExplicitWidth = 607
+  end
+  object Pnl_Client: TPanel
+    Left = 0
+    Top = 113
+    Width = 778
+    Height = 445
+    Align = alClient
+    TabOrder = 2
+    ExplicitLeft = 8
+    ExplicitTop = 49
+    ExplicitWidth = 607
+    ExplicitHeight = 450
+    object Pnl_LEFT: TPanel
+      Left = 1
+      Top = 1
+      Width = 185
+      Height = 443
+      Align = alLeft
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 0
+      ExplicitLeft = 176
+      ExplicitTop = 160
+      ExplicitHeight = 41
+    end
+    object cxSplit_LEFT: TcxSplitter
+      Left = 186
+      Top = 1
+      Width = 8
+      Height = 443
+      HotZoneClassName = 'TcxSimpleStyle'
+      ExplicitLeft = 192
+      ExplicitTop = -2
+      ExplicitHeight = 499
+    end
+    object Pnl_SUB_CLIENT: TPanel
+      Left = 194
+      Top = 1
+      Width = 583
+      Height = 443
+      Align = alClient
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 2
+      ExplicitLeft = 312
+      ExplicitTop = 168
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+    end
+  end
 end
