@@ -28,6 +28,8 @@ begin
   //Application.CreateForm(TF_Pass, F_Pass);
   //F_Pass.Show;
 
+  // TEST를 위해 임시 주석처리.
+  (*
   PassForm := TF_Pass.Create(nil);
   try
     if PassForm.ShowModal <> mrOk then
@@ -37,8 +39,15 @@ begin
   finally
     PassForm.Free();
   end;
+  *)
 
+  // Main화면을 BackGround에서 실행
   Application.CreateForm(TF_Main, F_Main);
   proc_Set_MainForm(F_Main);
+
+  // POPUP내용
+  Application.CreateForm(TF_MDI, F_MDI);
+  F_MDI.prc_SetForm;
+  F_MDI.ShowModal;
   Application.Run;
 end.

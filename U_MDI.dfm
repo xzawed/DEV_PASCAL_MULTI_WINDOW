@@ -2,8 +2,8 @@ object F_MDI: TF_MDI
   Left = 0
   Top = 0
   Caption = 'F_MDI'
-  ClientHeight = 195
-  ClientWidth = 273
+  ClientHeight = 401
+  ClientWidth = 488
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,4 +14,171 @@ object F_MDI: TF_MDI
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object Pnl_TOP: TPanel
+    Left = 0
+    Top = 0
+    Width = 488
+    Height = 97
+    Align = alTop
+    Caption = 'Pnl_TOP'
+    TabOrder = 0
+    ExplicitTop = 2
+  end
+  object cxSplit_TOP: TcxSplitter
+    Left = 0
+    Top = 97
+    Width = 488
+    Height = 8
+    HotZoneClassName = 'TcxMediaPlayer9Style'
+    AlignSplitter = salTop
+    ExplicitWidth = 273
+  end
+  object Pnl_CLIENT: TPanel
+    Left = 0
+    Top = 105
+    Width = 488
+    Height = 296
+    Align = alClient
+    TabOrder = 2
+    ExplicitTop = 103
+    ExplicitWidth = 437
+    ExplicitHeight = 149
+    object Pnl_C_LEFT: TPanel
+      Left = 1
+      Top = 1
+      Width = 240
+      Height = 294
+      Align = alLeft
+      TabOrder = 0
+      ExplicitLeft = 3
+      ExplicitTop = 6
+      object Pnl_C_L_TOP: TPanel
+        Left = 1
+        Top = 1
+        Width = 238
+        Height = 144
+        Align = alTop
+        Caption = 'Pnl_C_L_TOP'
+        TabOrder = 0
+        ExplicitLeft = 4
+        ExplicitTop = 5
+        object Str_L_Grid: TStringGrid
+          Left = 1
+          Top = 1
+          Width = 236
+          Height = 142
+          Align = alClient
+          TabOrder = 0
+          OnDrawCell = Str_L_GridDrawCell
+          ExplicitLeft = 5
+          ExplicitTop = 4
+        end
+      end
+      object cxSplit_C_L: TcxSplitter
+        Left = 1
+        Top = 145
+        Width = 238
+        Height = 8
+        HotZoneClassName = 'TcxMediaPlayer9Style'
+        AlignSplitter = salTop
+        ExplicitLeft = 4
+        ExplicitTop = 140
+      end
+      object Pnl_C_L_BOT: TPanel
+        Left = 1
+        Top = 153
+        Width = 238
+        Height = 140
+        Align = alClient
+        TabOrder = 2
+        ExplicitLeft = 4
+        ExplicitTop = 151
+        object Drw_L_Grid: TDrawGrid
+          Left = 1
+          Top = 1
+          Width = 236
+          Height = 138
+          Align = alClient
+          ColCount = 3
+          TabOrder = 0
+          OnDrawCell = Drw_L_GridDrawCell
+          ExplicitLeft = -3
+          ExplicitTop = -2
+        end
+      end
+    end
+    object cxSplit_LEFT: TcxSplitter
+      Left = 241
+      Top = 1
+      Width = 8
+      Height = 294
+      HotZoneClassName = 'TcxMediaPlayer9Style'
+      ExplicitLeft = 280
+      ExplicitTop = 80
+      ExplicitHeight = 100
+    end
+    object Pnl_C_Client: TPanel
+      Left = 249
+      Top = 1
+      Width = 238
+      Height = 294
+      Align = alClient
+      TabOrder = 2
+      ExplicitLeft = 247
+      ExplicitTop = -2
+      object Pnl_C_R_TOP: TPanel
+        Left = 1
+        Top = 1
+        Width = 236
+        Height = 143
+        Align = alTop
+        TabOrder = 0
+        ExplicitLeft = 6
+        ExplicitTop = 3
+        object Str_R_Grid: TStringGrid
+          Left = 1
+          Top = 1
+          Width = 234
+          Height = 141
+          Align = alClient
+          ColCount = 3
+          TabOrder = 0
+        end
+      end
+      object cxSplit_C_R: TcxSplitter
+        Left = 1
+        Top = 144
+        Width = 236
+        Height = 8
+        HotZoneClassName = 'TcxMediaPlayer9Style'
+        AlignSplitter = salTop
+        ExplicitLeft = 4
+        ExplicitTop = 140
+        ExplicitWidth = 8
+      end
+      object Pnl_C_R_BOT: TPanel
+        Left = 1
+        Top = 152
+        Width = 236
+        Height = 141
+        Align = alClient
+        TabOrder = 2
+        ExplicitLeft = 96
+        ExplicitTop = 232
+        ExplicitWidth = 185
+        ExplicitHeight = 41
+        object Drw_R_Grid: TDrawGrid
+          Left = 1
+          Top = 1
+          Width = 234
+          Height = 139
+          Align = alClient
+          ColCount = 3
+          TabOrder = 0
+          ExplicitLeft = 5
+          ExplicitTop = 6
+        end
+      end
+    end
+  end
 end

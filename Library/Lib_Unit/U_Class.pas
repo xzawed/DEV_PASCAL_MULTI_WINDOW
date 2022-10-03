@@ -5,8 +5,8 @@ interface
 uses Forms, Windows, Classes;
   (*
   type Form_MDI = class
-    constructor
-    destructor
+    constructor Create
+    destructor Destroy
 
     private
 
