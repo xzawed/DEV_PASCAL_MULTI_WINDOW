@@ -17,7 +17,7 @@ uses
   dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
   dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, cxSplitter, ExtCtrls, Grids;
+  dxSkinXmas2008Blue, cxSplitter, ExtCtrls, Grids, cxContainer, cxEdit, cxLabel;
 
 type
   TF_MDI = class(TForm)
@@ -37,6 +37,7 @@ type
     Pnl_C_R_BOT: TPanel;
     Str_R_Grid: TStringGrid;
     Drw_R_Grid: TDrawGrid;
+    cxLbl_TIP: TcxLabel;
     procedure Str_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
       State: TGridDrawState);
     procedure Drw_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
@@ -69,7 +70,6 @@ begin
     Str_L_Grid.Canvas.Brush.Color := clBlue;
 // 채우기 속성
   Str_L_Grid.Canvas.FillRect(Rect);
-
   lValWidth := Str_L_Grid.Canvas.TextWidth('가나다');
   Str_L_Grid.Canvas.TextOut( (Rect.Left+Rect.Right-lValWidth) div 2, Rect.Top+5, '가나다');
 end;
@@ -78,6 +78,7 @@ procedure TF_MDI.Drw_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 var
   lValWidth : Integer;
+  lGrdAlign : Word;
 begin
 // ACol이 홀수일때 clYellow 짝수일때 clBlue
   if ACol mod 2 = 0 then
@@ -86,10 +87,16 @@ begin
     Drw_L_Grid.Canvas.Brush.Color := clBlue;
 // 채우기 속성
   Drw_L_Grid.Canvas.FillRect(Rect);
-
+// 가운데 정렬
+  lGrdAlign := SetTextAlign(Drw_L_Grid.Canvas.Handle, TA_CENTER);
   lValWidth := Drw_L_Grid.Canvas.TextWidth('라마바');
-  Drw_L_Grid.Canvas.TextOut( (Rect.Left+Rect.Right-lValWidth) div 2, Rect.Top+5, '라마바');
-
+// Drw_L_Grid 내용출력 처리
+// CASE1) 문자열 길이만큼 뺀후 2로 나눠 가운데 정렬처리(단 문자열만 해당.)
+  //Drw_L_Grid.Canvas.TextOut( (Rect.Left+Rect.Right-lValWidth) div 2, Rect.Top+5, '라마바');
+// CASE2) Rect.left + (Rect.Right - Rect.Left)
+  Drw_L_Grid.Canvas.TextOut( (Rect.Left + (Rect.Right - Rect.Left)) div 2, Rect.Top+5, '라마바');
+// 가운데 정렬
+  SetTextAlign(Drw_L_Grid.Canvas.Handle, lGrdAlign);
 end;
 
 procedure TF_MDI.prc_SetForm;

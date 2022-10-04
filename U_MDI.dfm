@@ -18,40 +18,48 @@ object F_MDI: TF_MDI
     Left = 0
     Top = 0
     Width = 488
-    Height = 97
+    Height = 81
     Align = alTop
-    Caption = 'Pnl_TOP'
     TabOrder = 0
-    ExplicitTop = 2
+    object cxLbl_TIP: TcxLabel
+      Left = 48
+      Top = 32
+      Caption = '* '#54616#45800#51032' Grid'#45716' '#44033#44033#51032' '#51060#48292#53944' '#54648#46308#47084' '#45236#51648' '#54532#47196#49884#51200' '#54840#52636' '#53580#49828#53944' '#50857#46020#51077#45768#45796'.'
+      ParentFont = False
+      Style.Font.Charset = DEFAULT_CHARSET
+      Style.Font.Color = clWindowText
+      Style.Font.Height = -11
+      Style.Font.Name = 'Tahoma'
+      Style.Font.Style = [fsBold]
+      Style.IsFontAssigned = True
+    end
   end
   object cxSplit_TOP: TcxSplitter
     Left = 0
-    Top = 97
+    Top = 81
     Width = 488
     Height = 8
     HotZoneClassName = 'TcxMediaPlayer9Style'
     AlignSplitter = salTop
-    ExplicitWidth = 273
+    ExplicitTop = 97
   end
   object Pnl_CLIENT: TPanel
     Left = 0
-    Top = 105
+    Top = 89
     Width = 488
-    Height = 296
+    Height = 312
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 103
-    ExplicitWidth = 437
-    ExplicitHeight = 149
+    ExplicitTop = 105
+    ExplicitHeight = 296
     object Pnl_C_LEFT: TPanel
       Left = 1
       Top = 1
       Width = 240
-      Height = 294
+      Height = 310
       Align = alLeft
       TabOrder = 0
-      ExplicitLeft = 3
-      ExplicitTop = 6
+      ExplicitHeight = 294
       object Pnl_C_L_TOP: TPanel
         Left = 1
         Top = 1
@@ -60,8 +68,6 @@ object F_MDI: TF_MDI
         Align = alTop
         Caption = 'Pnl_C_L_TOP'
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = 5
         object Str_L_Grid: TStringGrid
           Left = 1
           Top = 1
@@ -70,8 +76,6 @@ object F_MDI: TF_MDI
           Align = alClient
           TabOrder = 0
           OnDrawCell = Str_L_GridDrawCell
-          ExplicitLeft = 5
-          ExplicitTop = 4
         end
       end
       object cxSplit_C_L: TcxSplitter
@@ -81,29 +85,25 @@ object F_MDI: TF_MDI
         Height = 8
         HotZoneClassName = 'TcxMediaPlayer9Style'
         AlignSplitter = salTop
-        ExplicitLeft = 4
-        ExplicitTop = 140
       end
       object Pnl_C_L_BOT: TPanel
         Left = 1
         Top = 153
         Width = 238
-        Height = 140
+        Height = 156
         Align = alClient
         TabOrder = 2
-        ExplicitLeft = 4
-        ExplicitTop = 151
+        ExplicitHeight = 140
         object Drw_L_Grid: TDrawGrid
           Left = 1
           Top = 1
           Width = 236
-          Height = 138
+          Height = 154
           Align = alClient
           ColCount = 3
           TabOrder = 0
           OnDrawCell = Drw_L_GridDrawCell
-          ExplicitLeft = -3
-          ExplicitTop = -2
+          ExplicitHeight = 138
         end
       end
     end
@@ -111,21 +111,18 @@ object F_MDI: TF_MDI
       Left = 241
       Top = 1
       Width = 8
-      Height = 294
+      Height = 310
       HotZoneClassName = 'TcxMediaPlayer9Style'
-      ExplicitLeft = 280
-      ExplicitTop = 80
-      ExplicitHeight = 100
+      ExplicitHeight = 294
     end
     object Pnl_C_Client: TPanel
       Left = 249
       Top = 1
       Width = 238
-      Height = 294
+      Height = 310
       Align = alClient
       TabOrder = 2
-      ExplicitLeft = 247
-      ExplicitTop = -2
+      ExplicitHeight = 294
       object Pnl_C_R_TOP: TPanel
         Left = 1
         Top = 1
@@ -133,8 +130,6 @@ object F_MDI: TF_MDI
         Height = 143
         Align = alTop
         TabOrder = 0
-        ExplicitLeft = 6
-        ExplicitTop = 3
         object Str_R_Grid: TStringGrid
           Left = 1
           Top = 1
@@ -152,31 +147,24 @@ object F_MDI: TF_MDI
         Height = 8
         HotZoneClassName = 'TcxMediaPlayer9Style'
         AlignSplitter = salTop
-        ExplicitLeft = 4
-        ExplicitTop = 140
-        ExplicitWidth = 8
       end
       object Pnl_C_R_BOT: TPanel
         Left = 1
         Top = 152
         Width = 236
-        Height = 141
+        Height = 157
         Align = alClient
         TabOrder = 2
-        ExplicitLeft = 96
-        ExplicitTop = 232
-        ExplicitWidth = 185
-        ExplicitHeight = 41
+        ExplicitHeight = 141
         object Drw_R_Grid: TDrawGrid
           Left = 1
           Top = 1
           Width = 234
-          Height = 139
+          Height = 155
           Align = alClient
           ColCount = 3
           TabOrder = 0
-          ExplicitLeft = 5
-          ExplicitTop = 6
+          ExplicitHeight = 139
         end
       end
     end
