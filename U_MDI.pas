@@ -17,7 +17,7 @@ uses
   dxSkinSevenClassic, dxSkinSharp, dxSkinSharpPlus, dxSkinSilver,
   dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue, cxSplitter, ExtCtrls, Grids, cxContainer, cxEdit, cxLabel;
+  dxSkinXmas2008Blue, cxSplitter, ExtCtrls, Grids, cxContainer, cxEdit, cxLabel, U_Class;
 
 type
   TF_MDI = class(TForm)
@@ -28,29 +28,44 @@ type
     cxSplit_LEFT: TcxSplitter;
     Pnl_C_Client: TPanel;
     Pnl_C_L_TOP: TPanel;
-    Str_L_Grid: TStringGrid;
     cxSplit_C_L: TcxSplitter;
     Pnl_C_L_BOT: TPanel;
-    Drw_L_Grid: TDrawGrid;
     Pnl_C_R_TOP: TPanel;
     cxSplit_C_R: TcxSplitter;
     Pnl_C_R_BOT: TPanel;
+    cxLbl_TIP: TcxLabel;
+    ////////////////////////////////////////////////////////////////////////////
+    Str_L_Grid: TStringGrid;
+    Drw_L_Grid: TDrawGrid;
     Str_R_Grid: TStringGrid;
     Drw_R_Grid: TDrawGrid;
-    cxLbl_TIP: TcxLabel;
+    ////////////////////////////////////////////////////////////////////////////
     procedure Str_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
       State: TGridDrawState);
     procedure Drw_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer; Rect: TRect;
       State: TGridDrawState);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure Str_R_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
+    procedure Drw_R_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
+      Rect: TRect; State: TGridDrawState);
   private
     { Private declarations }
   public
-    procedure prc_SetForm;
+    procedure prc_ExecMethod( pObject: TObject; pMethod : String); // 프로시저 호출로 해당 함수 실행 (단. 인수가 있는 프로시저는 처리할수 없음)
     { Public declarations }
   end;
 
 var
   F_MDI: TF_MDI;
+
+type
+  TExec = procedure of object; // 프로시저 형식의 오브젝트 생성
+
 
 implementation
 
@@ -71,7 +86,14 @@ begin
 // 채우기 속성
   Str_L_Grid.Canvas.FillRect(Rect);
   lValWidth := Str_L_Grid.Canvas.TextWidth('가나다');
+// 가운데 정렬 출력( 텍스트 길이만큼 Width사이즈에서 제외 )  
   Str_L_Grid.Canvas.TextOut( (Rect.Left+Rect.Right-lValWidth) div 2, Rect.Top+5, '가나다');
+end;
+
+procedure TF_MDI.Str_R_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
+begin
+//
 end;
 
 procedure TF_MDI.Drw_L_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -88,70 +110,55 @@ begin
 // 채우기 속성
   Drw_L_Grid.Canvas.FillRect(Rect);
 // 가운데 정렬
-  lGrdAlign := SetTextAlign(Drw_L_Grid.Canvas.Handle, TA_CENTER);
-  lValWidth := Drw_L_Grid.Canvas.TextWidth('라마바');
-// Drw_L_Grid 내용출력 처리
-// CASE1) 문자열 길이만큼 뺀후 2로 나눠 가운데 정렬처리(단 문자열만 해당.)
-  //Drw_L_Grid.Canvas.TextOut( (Rect.Left+Rect.Right-lValWidth) div 2, Rect.Top+5, '라마바');
-// CASE2) Rect.left + (Rect.Right - Rect.Left)
-  Drw_L_Grid.Canvas.TextOut( (Rect.Left + (Rect.Right - Rect.Left)) div 2, Rect.Top+5, '라마바');
-// 가운데 정렬
-  SetTextAlign(Drw_L_Grid.Canvas.Handle, lGrdAlign);
+  Drw_L_Grid.Canvas.TextOut( ((Rect.Left + Rect.Right) - Rect.Left) div 2, Rect.Top+5, '라마바');
 end;
 
-procedure TF_MDI.prc_SetForm;
-var
-  lICol : Integer;
-  lIRow : Integer;
-  lValWidth : Integer;
-  lRect : TRect;
+procedure TF_MDI.Drw_R_GridDrawCell(Sender: TObject; ACol, ARow: Integer;
+  Rect: TRect; State: TGridDrawState);
 begin
 //
-  Drw_L_Grid.ColCount := 3;
-  Drw_L_Grid.RowCount := 5;
+end;
 
-  Str_L_Grid.ColCount := 3;
-  Str_L_Grid.RowCount := 5;
+procedure TF_MDI.FormActivate(Sender: TObject);
+begin
+  ShowMessage('Form Activate');
+end;
 
-  Drw_R_Grid.ColCount := 3;
-  Drw_R_Grid.RowCount := 5;
+procedure TF_MDI.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  ShowMessage('Form Close');
+  Action := caFree;  // Action := caFree 를 하는순간 Close와 함께 Destroy도 같이 발생
+end;
 
-  Str_R_Grid.ColCount := 3;
-  Str_R_Grid.RowCount := 5;
+procedure TF_MDI.FormCreate(Sender: TObject);
+begin
+  ShowMessage('Form Create');
+end;
 
-// 2가지 방식을 시험을 해볼까 함.
-// CASE 1) Public 프로시저 내부에 값또는 색상을 셋팅하는 처리부 호출
-// CASE 2) OnDrawCell 이벤트 핸들러 내부에 값또는 색상을 셋팅하는 처리부 호출
+procedure TF_MDI.FormDestroy(Sender: TObject);
+begin
+  ShowMessage('Form Destroy');
+end;
 
-  for lIRow := 0 to 4 do
-  begin
-    for lICol := 0 to 2 do
-    begin
-      // StringGrid
-      if lICol mod 2 = 0 then
-        Str_R_Grid.Canvas.Brush.Color := clBlue
-      else
-        Str_R_Grid.Canvas.Brush.Color := clYellow;
-      lRect := Str_R_Grid.CellRect(lICol, lIRow);
-      Str_R_Grid.Canvas.FillRect(lRect);
-      
-      lValWidth := Str_R_Grid.Canvas.TextWidth('가나다');
-      Str_R_Grid.Canvas.TextOut( (lRect.Left+lRect.Right-lValWidth) div 2, lRect.Top+5, '가나다');
+procedure TF_MDI.FormShow(Sender: TObject);
+begin
+  ShowMessage('Form Show');
+end;
 
-      // DrawGrid
-      if lICol mod 2 = 0 then
-        Drw_R_Grid.Canvas.Brush.Color := clBlue
-      else
-        Drw_R_Grid.Canvas.Brush.Color := clYellow;
-      lRect := Drw_R_Grid.CellRect(lICol, lIRow);
-      Drw_R_Grid.Canvas.FillRect(lRect);
+procedure TF_MDI.prc_ExecMethod( pObject: TObject; pMethod : String);
+var
+  Routine : TMethod;
+  Exec: TExec;  // procedure 실행
+begin
 
-      lValWidth := Drw_R_Grid.Canvas.TextWidth('라마바');
-      Drw_R_Grid.Canvas.TextOut( (lRect.Left+lRect.Right-lValWidth) div 2, lRect.Top+5, '라마바');
+  Routine.Data := Pointer(pObject) ;
+  Routine.Code := pObject.MethodAddress(pMethod) ;
+  
+  if NOT Assigned(Routine.Code) then
+    Exit;
 
-    end;
-  end;
-
+  Exec := TExec(Routine) ;
+  Exec;
 end;
 
 end.

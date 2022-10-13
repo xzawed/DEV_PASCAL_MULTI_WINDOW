@@ -27,7 +27,6 @@ type
     Pnl_LEFT: TPanel;
     cxSplit_LEFT: TcxSplitter;
     Pnl_SUB_CLIENT: TPanel;
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,10 +39,5 @@ var
 implementation
 
 {$R *.dfm}
-
-procedure TF_Main.FormCreate(Sender: TObject);
-begin
-// Form Create시 동적으로 MDIForm 개체 생성처리 작업
-end;
 
 end.

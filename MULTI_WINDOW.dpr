@@ -47,7 +47,6 @@ begin
 
   // POPUP³»¿ë
   Application.CreateForm(TF_MDI, F_MDI);
-  F_MDI.prc_SetForm;
   F_MDI.ShowModal;
   Application.Run;
 end.

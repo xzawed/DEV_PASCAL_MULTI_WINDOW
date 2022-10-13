@@ -12,6 +12,11 @@ object F_MDI: TF_MDI
   Font.Style = []
   FormStyle = fsMDIForm
   OldCreateOrder = False
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Pnl_TOP: TPanel
@@ -41,7 +46,6 @@ object F_MDI: TF_MDI
     Height = 8
     HotZoneClassName = 'TcxMediaPlayer9Style'
     AlignSplitter = salTop
-    ExplicitTop = 97
   end
   object Pnl_CLIENT: TPanel
     Left = 0
@@ -50,8 +54,6 @@ object F_MDI: TF_MDI
     Height = 312
     Align = alClient
     TabOrder = 2
-    ExplicitTop = 105
-    ExplicitHeight = 296
     object Pnl_C_LEFT: TPanel
       Left = 1
       Top = 1
@@ -59,7 +61,6 @@ object F_MDI: TF_MDI
       Height = 310
       Align = alLeft
       TabOrder = 0
-      ExplicitHeight = 294
       object Pnl_C_L_TOP: TPanel
         Left = 1
         Top = 1
@@ -93,7 +94,6 @@ object F_MDI: TF_MDI
         Height = 156
         Align = alClient
         TabOrder = 2
-        ExplicitHeight = 140
         object Drw_L_Grid: TDrawGrid
           Left = 1
           Top = 1
@@ -103,7 +103,6 @@ object F_MDI: TF_MDI
           ColCount = 3
           TabOrder = 0
           OnDrawCell = Drw_L_GridDrawCell
-          ExplicitHeight = 138
         end
       end
     end
@@ -113,7 +112,6 @@ object F_MDI: TF_MDI
       Width = 8
       Height = 310
       HotZoneClassName = 'TcxMediaPlayer9Style'
-      ExplicitHeight = 294
     end
     object Pnl_C_Client: TPanel
       Left = 249
@@ -122,7 +120,6 @@ object F_MDI: TF_MDI
       Height = 310
       Align = alClient
       TabOrder = 2
-      ExplicitHeight = 294
       object Pnl_C_R_TOP: TPanel
         Left = 1
         Top = 1
@@ -138,6 +135,9 @@ object F_MDI: TF_MDI
           Align = alClient
           ColCount = 3
           TabOrder = 0
+          OnDrawCell = Str_R_GridDrawCell
+          ExplicitLeft = -3
+          ExplicitTop = 4
         end
       end
       object cxSplit_C_R: TcxSplitter
@@ -155,7 +155,6 @@ object F_MDI: TF_MDI
         Height = 157
         Align = alClient
         TabOrder = 2
-        ExplicitHeight = 141
         object Drw_R_Grid: TDrawGrid
           Left = 1
           Top = 1
@@ -164,7 +163,7 @@ object F_MDI: TF_MDI
           Align = alClient
           ColCount = 3
           TabOrder = 0
-          ExplicitHeight = 139
+          OnDrawCell = Drw_R_GridDrawCell
         end
       end
     end

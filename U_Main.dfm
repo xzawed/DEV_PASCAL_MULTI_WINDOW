@@ -11,7 +11,6 @@ object F_Main: TF_Main
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Pnl_TOP: TPanel
@@ -23,8 +22,6 @@ object F_Main: TF_Main
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitTop = 2
   end
   object cxSplit_TOP: TcxSplitter
     Left = 0
@@ -33,8 +30,6 @@ object F_Main: TF_Main
     Height = 8
     HotZoneClassName = 'TcxSimpleStyle'
     AlignSplitter = salTop
-    ExplicitTop = 49
-    ExplicitWidth = 607
   end
   object Pnl_Client: TPanel
     Left = 0
@@ -43,10 +38,6 @@ object F_Main: TF_Main
     Height = 445
     Align = alClient
     TabOrder = 2
-    ExplicitLeft = 8
-    ExplicitTop = 49
-    ExplicitWidth = 607
-    ExplicitHeight = 450
     object Pnl_LEFT: TPanel
       Left = 1
       Top = 1
@@ -56,9 +47,6 @@ object F_Main: TF_Main
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 176
-      ExplicitTop = 160
-      ExplicitHeight = 41
     end
     object cxSplit_LEFT: TcxSplitter
       Left = 186
@@ -66,9 +54,6 @@ object F_Main: TF_Main
       Width = 8
       Height = 443
       HotZoneClassName = 'TcxSimpleStyle'
-      ExplicitLeft = 192
-      ExplicitTop = -2
-      ExplicitHeight = 499
     end
     object Pnl_SUB_CLIENT: TPanel
       Left = 194
@@ -79,10 +64,6 @@ object F_Main: TF_Main
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitLeft = 312
-      ExplicitTop = 168
-      ExplicitWidth = 185
-      ExplicitHeight = 41
     end
   end
 end
