@@ -18,7 +18,7 @@ uses
   dxSkinSpringTime, dxSkinStardust, dxSkinSummer2008, dxSkinTheAsphaltWorld,
   dxSkinsDefaultPainters, dxSkinValentine, dxSkinVS2010, dxSkinWhiteprint,
   dxSkinXmas2008Blue, cxControls, cxContainer, cxEdit, cxTextEdit, cxLabel,
-  StdCtrls, cxButtons;
+  StdCtrls, cxButtons, U_Class;
 
 type
   TF_Pass = class(TForm)
@@ -30,8 +30,7 @@ type
   private
     { Private declarations }
   public
-    gRslt_Code : Integer;
-    function func_GetMessage : String; // 결과 코드값에 따른 상태 메세지 Return
+    gRslt_Code : TErr;
     { Public declarations }
   end;
 
@@ -73,7 +72,7 @@ begin
    begin
      // DLL내부에 있는 함수를 호출한다.
      Func_DLL_Valid(cxTextEdt_Input.Text, gRslt_Code);
-     cxLbl_Result_Message.Caption := func_GetMessage;
+     cxLbl_Result_Message.Caption := func_GetErrMessage(gRslt_Code);
    end
    else
    begin
@@ -83,31 +82,6 @@ begin
    end;
 
    FreeLibrary(H);
-end;
-
-function TF_Pass.func_GetMessage: String;
-begin
-  try
-    case gRslt_Code of
-    0 : begin
-          Result := '정상적인 입력내용입니다.';
-          ModalResult := mrOk;
-        end;
-    10: Result := '10자 이상 입력해주세요.';
-    20: Result := '특수문자 내용이 없습니다.';
-    21: Result := '대문자가 없습니다.';
-    22: Result := '소문자가 없습니다.';
-    23: Result := '숫자가 없습니다.';
-    30: Result := '연속된 숫자가 있습니다.';
-    40: Result := 'Script내용은 사용 할 수 없습니다.';
-    else
-      Result := '검증하는 과정중에 에러가 발생했습니다.';
-    end;
-  except on e:Exception do
-    begin
-      Result := '[ERR]' + e.Message;
-    end;
-  end;
 end;
 
 end.

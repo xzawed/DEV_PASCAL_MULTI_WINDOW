@@ -1,4 +1,5 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{b75023d2-0ac9-4ffa-8025-a2f7a7146d49}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -29,6 +30,7 @@
     <DelphiCompile Include="Lib_Valid.dpr">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
+    <DCCReference Include="..\Lib_Unit\U_Class.pas" />
     <DCCReference Include="pcre.pas" />
     <DCCReference Include="PerlRegEx.pas" />
     <DCCReference Include="Valid.pas" />

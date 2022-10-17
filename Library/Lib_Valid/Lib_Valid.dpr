@@ -15,7 +15,8 @@ uses
   Classes,
   Valid in 'Valid.pas',
   pcre in 'pcre.pas',
-  PerlRegEx in 'PerlRegEx.pas';
+  PerlRegEx in 'PerlRegEx.pas',
+  U_Class in '..\Lib_Unit\U_Class.pas';
 
 {$R *.res}
 

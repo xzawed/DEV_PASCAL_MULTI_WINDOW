@@ -4,7 +4,7 @@ unit Valid;
 interface
 
 uses
-  SysUtils, Classes, PerlRegEx;
+  SysUtils, Classes, U_Class, PerlRegEx;
   //============================================================================
   // Password
   function func_Sub_Special_Bool( pStr : String ):Boolean;            // 특수문자가 포함되있는지 체크
@@ -15,7 +15,7 @@ uses
   function func_Sub_Script_Lang_Bool( pStr : String ):Boolean;        // Script 내용이 있는지 체크
 
   // Password가 유효한지 확인
-  function func_Valid_Password(pPassword : String; var vResultcd: Integer):Boolean; stdcall;
+  function func_Valid_Password(pPassword : String; var vResultcd: TErr):Boolean; stdcall;
   //============================================================================
 
 implementation
@@ -160,16 +160,16 @@ begin
   Result := False;
 end;
 
-function func_Valid_Password(pPassword : String; var vResultcd: Integer):Boolean;
+function func_Valid_Password(pPassword : String; var vResultcd: TErr):Boolean;
 begin
   try
-    vResultcd := 0;
+    vResultcd := tpNormal;
     Result    := True;
 
     // 10자리 이하의 Password는 Ban처리
     if Length(pPassword) < 10 then
     begin
-      vResultcd := 10;
+      vResultcd := tpErrLength;
       Result    := False;
     end
     else
@@ -184,49 +184,49 @@ begin
       if func_Sub_Special_Bool(pPassword) = False then
       begin
         // 특수문자 없음
-        vResultcd := 20;
+        vResultcd := tpErrSpcChar;
         Result    := False;
       end;
 
       if func_Sub_Upper_Bool(pPassword) = False then
       begin
         // 대문자 없음
-        vResultcd := 21;
+        vResultcd := tpErrUpChar;
         Result    := False;
       end;
 
       if func_Sub_Lower_Bool(pPassword) = False then
       begin
         // 소문자 없음
-        vResultcd := 22;
+        vResultcd := tpErrLowChar;
         Result    := False;
       end;
 
       if func_Sub_Number_Bool(pPassword) = False then
       begin
         // 숫자 없음
-        vResultcd := 23;
+        vResultcd := tpErrNum;
         Result    := False;
       end;
 
       if func_Sub_Number_Consecutive_Bool(pPassword) then
       begin
         // 연속된 문자 있음
-        vResultcd := 30;
+        vResultcd := tpErrConNum;
         Result    := False;
       end;
 
       if func_Sub_Script_Lang_Bool(pPassword) then
       begin
         // Script 문법이 있음
-        vResultcd := 40;
+        vResultcd := tpErrScript;
         Result    := False;
       end;
     end;
 
   except on E:Exception do
     begin
-      vResultcd := 99;
+      vResultcd := tpErrExcept;
       Result    := False;
     end;
   end;

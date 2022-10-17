@@ -31,6 +31,32 @@ uses Forms, Windows, Classes, Grids, Dialogs;
       1: (TopLeft, BottomRight: TGridCoord);
   end;
 ////////////////////////////////////////////////////////////////////////////////
+(*
+    0 : begin
+          Result := '정상적인 입력내용입니다.';
+          ModalResult := mrOk;
+        end;
+    10: Result := '10자 이상 입력해주세요.';
+    20: Result := '특수문자 내용이 없습니다.';
+    21: Result := '대문자가 없습니다.';
+    22: Result := '소문자가 없습니다.';
+    23: Result := '숫자가 없습니다.';
+    30: Result := '연속된 숫자가 있습니다.';
+    40: Result := 'Script내용은 사용 할 수 없습니다.';
+*)
+  TErr = (
+         tpNormal     = 0
+       , tpErrLength  = 10
+       , tpErrSpcChar = 20
+       , tpErrUpChar  = 21
+       , tpErrLowChar = 22
+       , tpErrNum     = 23
+       , tpErrConNum  = 30
+       , tpErrScript  = 40
+       , tpErrExcept  = 99
+         );
+
+  function func_GetErrMessage(pErrType : TErr): string;
 
   implementation
 
@@ -55,6 +81,23 @@ procedure TCGrid.DrawCell(ACol, ARow: Integer; ARect: TRect;
   AState: TGridDrawState);
 begin
 // 사용자 정의 함수나 이벤트를 호출한 이후 진행
+end;
+
+
+function func_GetErrMessage(pErrType : TErr): string;
+begin
+  case pErrType of
+    tpNormal    : Result := '정상적인 입력내용입니다.';
+    tpErrLength : Result := '10자 이상 입력해주세요.';
+    tpErrSpcChar: Result := '특수문자 내용이 없습니다.';
+    tpErrUpChar : Result := '대문자가 없습니다.';
+    tpErrLowChar: Result := '소문자가 없습니다.';
+    tpErrNum    : Result := '숫자가 없습니다.';
+    tpErrConNum : Result := '연속된 숫자가 있습니다.';
+    tpErrScript : Result := 'Script내용은 사용 할 수 없습니다.';
+    else
+                  Result := '검증하는 과정중에 에러가 발생했습니다.';
+  end;
 end;
 
 end.
