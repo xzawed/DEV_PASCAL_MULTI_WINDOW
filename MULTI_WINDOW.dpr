@@ -46,7 +46,7 @@ begin
   proc_Set_MainForm(F_Main);
 
   // POPUP³»¿ë
-  Application.CreateForm(TF_MDI, F_MDI);
-  F_MDI.ShowModal;
+  //Application.CreateForm(TF_MDI, F_MDI);
+  //F_MDI.ShowModal;
   Application.Run;
 end.

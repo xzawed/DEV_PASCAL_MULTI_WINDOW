@@ -43,7 +43,7 @@ implementation
 
 procedure TF_Pass.cxBtn_Valid_CheckClick(Sender: TObject);
 type
-  TFunc = function(pStr : String; var vRslt : Integer):Boolean; stdcall;
+  TFunc = function(pStr : String; var vRslt : TErr):Boolean; stdcall;
 var
   H              : THandle;
   Func_DLL_Valid : TFunc;
