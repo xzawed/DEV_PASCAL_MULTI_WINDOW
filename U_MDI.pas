@@ -6,6 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, Grids, U_Class;
 
+////////////////////////////////////////////////////////////////////////////////
+/// Form 객체의 부모화면을 생성처리할 예정
 type
   TF_MDI = class(TForm)
     ////////////////////////////////////////////////////////////////////////////
@@ -20,6 +22,7 @@ type
     procedure prc_ExecMethod( pObject: TObject; pMethod : String); // 프로시저 호출로 해당 함수 실행 (단. 인수가 있는 프로시저는 처리할수 없음)
     { Public declarations }
   end;
+////////////////////////////////////////////////////////////////////////////////
 
 var
   F_MDI: TF_MDI;
