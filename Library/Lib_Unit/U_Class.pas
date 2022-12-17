@@ -2,7 +2,7 @@ unit U_Class;
 
 interface
 
-uses Forms, Windows, Classes, Grids, Dialogs;
+uses Forms, Windows, Classes, Grids, Dialogs, SysUtils, DateUtils;
 
   // Form의 용도에 따라 각각 상황에 맞는 동적 셋팅을 처리.
   type
@@ -16,14 +16,11 @@ uses Forms, Windows, Classes, Grids, Dialogs;
       { private declarations }
     protected
       { protected declarations }
-      function Getxpos : integer;
-      function Setxpos( pXpos : integer) : integer;
-      function Getypos : integer;
-      function Setypos( pYpos : integer) : integer;
     public
       { public declarations }
-      property xpos : Left read Getxpos write Setxpos; // Left를 상속
-      property ypos : Top read Getypos write Setypos;  // Top을 상속
+      constructor Create(AOwner: TComponent); override;
+      constructor CreateNew(AOwner: TComponent; Dummy: Integer = 0); virtual;
+      destructor destroy; override;
       procedure prcSetForm( FormType:TFormType; pFormScreen:TFormScreen);
     published
       { published declarations }
@@ -78,33 +75,25 @@ end;
 
 { TCustForm }
 
-function TCustForm.Setxpos( pXpos : integer): integer;
+constructor TCustForm.Create(AOwner: TComponent);
 begin
-//
-  Result := pXpos;
+  inherited;
 end;
 
-function TCustForm.Setypos( pYpos : integer): integer;
+constructor TCustForm.CreateNew(AOwner: TComponent; Dummy: Integer);
 begin
-//
-  Result := pYpos;
+  inherited;
 end;
 
-function TCustForm.Getxpos: integer;
+destructor TCustForm.destroy;
 begin
-//
-  Result := xpos;
-end;
-
-function TCustForm.Getypos: integer;
-begin
-//
-  Result := ypos;
+  inherited;
 end;
 
 procedure TCustForm.prcSetForm(FormType: TFormType; pFormScreen: TFormScreen);
 begin
-// Param Value를 토대로 Form의 화면을 셋팅한다.
+// 추후에 이것저것 넣어가면서 내용을 채워넣을 예정
+//
 end;
 
 
