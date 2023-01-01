@@ -2,7 +2,7 @@ unit U_Class;
 
 interface
 
-uses Forms, Windows, Classes, Grids, Dialogs, SysUtils, DateUtils;
+uses Forms, Windows, Classes, Grids, Dialogs, SysUtils, DateUtils, Messages;
 
   // Form의 용도에 따라 각각 상황에 맞는 동적 셋팅을 처리.
   type
@@ -25,6 +25,7 @@ uses Forms, Windows, Classes, Grids, Dialogs, SysUtils, DateUtils;
     published
       { published declarations }
   end;
+
 ////////////////////////////////////////////////////////////////////////////////
 ///
 (*
@@ -54,6 +55,9 @@ uses Forms, Windows, Classes, Grids, Dialogs, SysUtils, DateUtils;
            );
 
   function func_GetErrMessage(pErrType : TErr): string;
+
+  // Scroll bar가 생기기 전에 아래 명시한 메시지가 발생
+  const WN_SCROLLBAR = $3F;
 
 implementation
 
